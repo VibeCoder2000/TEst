@@ -1,38 +1,168 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: Arial, sans-serif; background: #111; color: #fff; }
+body {
+  font-family: "Inter", Arial, sans-serif;
+  background: radial-gradient(circle at top, rgba(40, 120, 255, 0.15), transparent 45%),
+    #050b1f;
+  color: #f5f7ff;
+  min-height: 100vh;
+}
 
     .navbar {
       display: flex; justify-content: space-between; align-items: center;
-      padding: 10px; background: #222;
+      padding: 16px 40px; background: rgba(8, 16, 36, 0.95);
+      position: sticky; top: 0; z-index: 5; backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      font-size: 20px;
+      color: #fff;
     }
 
     .navbar img { height: 40px; }
-    .nav-links { display: flex; align-items: center; gap: 10px; }
-    .nav-links a { color: white; text-decoration: none; margin: 0 5px; }
+    .nav-links { display: flex; align-items: center; gap: 18px; }
+    .nav-links a {
+      color: rgba(255, 255, 255, 0.85);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 6px 2px;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #3a7bff, #7be7ff);
+      transition: width 0.3s ease;
+    }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a:hover { color: #fff; }
+
+    .search-field {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: rgba(255, 255, 255, 0.7);
+    }
 
     .search-bar {
-      padding: 5px; border-radius: 5px; border: none;
+      background: transparent;
+      border: none;
+      color: #fff;
+      outline: none;
+      width: 180px;
     }
 
     .banner {
-      height: 50vh;
+      height: 65vh;
       background-size: cover;
+      background-position: center;
       display: flex;
       align-items: center;
-      padding: 20px;
+      padding: 40px;
+      position: relative;
     }
 
-    .banner h1 {
-      background: rgba(0,0,0,0.7);
-      padding: 10px;
+    .banner::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(5, 11, 31, 0.9) 10%, rgba(5, 11, 31, 0.55) 55%, rgba(5, 11, 31, 0.05));
     }
+
+    .banner-content {
+      position: relative;
+      max-width: 540px;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .banner-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(71, 132, 255, 0.2);
+      border: 1px solid rgba(123, 231, 255, 0.3);
+      color: #cfe8ff;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      font-weight: 600;
+    }
+
+    .banner-content h1 {
+      font-size: clamp(32px, 4vw, 54px);
+      line-height: 1.1;
+    }
+
+    .banner-meta {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 14px;
+    }
+
+    .banner-description {
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .banner-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 12px 22px;
+      border-radius: 999px;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn.primary {
+      background: linear-gradient(120deg, #3a7bff, #7be7ff);
+      color: #04102c;
+      box-shadow: 0 10px 25px rgba(58, 123, 255, 0.35);
+    }
+
+    .btn.ghost {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .btn:hover { transform: translateY(-2px); }
 
     .row {
-      margin: 20px;
+      margin: 28px 40px;
     }
 
     .row h2 {
-      margin-bottom: 10px;
+      margin-bottom: 12px;
+      font-size: 20px;
+      font-weight: 600;
+      color: #e8edff;
     }
 
     .list {
@@ -41,11 +171,12 @@
     }
 
     .list img {
-      width: 150px;
-      margin-right: 10px;
+      width: 170px;
+      margin-right: 14px;
       cursor: pointer;
-      border-radius: 5px;
-      transition: transform 0.3s ease, filter 0.3s ease;
+      border-radius: 14px;
+      transition: transform 0.3s ease, filter 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.35);
     }
 
     .list img:hover {
@@ -66,7 +197,7 @@
     }
 
     .modal-content {
-      background: #222;
+      background: #0b1430;
       padding: 20px;
       width: 100%;
       max-width: 800px;
@@ -74,7 +205,8 @@
       overflow-y: auto;
       position: relative;
       text-align: center;
-      border-radius: 10px;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
     }
 
     .modal-body {
@@ -86,7 +218,7 @@
 
     .modal-body img {
       width: 30%;
-      border-radius: 5px;
+      border-radius: 12px;
     }
 
     .modal-text {
@@ -96,7 +228,7 @@
 
     .modal img {
       width: 25%;
-      border-radius: 5px;
+      border-radius: 12px;
     }
 
     .stars { color: gold; }
@@ -117,7 +249,7 @@
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.9);
+      background: rgba(5, 11, 31, 0.95);
       display: none;
       justify-content: center;
       align-items: center;
@@ -126,11 +258,13 @@
     }
 
     .search-modal input {
-      width: 300px;
-      padding: 10px;
-      border-radius: 5px;
-      border: none;
+      width: min(420px, 90%);
+      padding: 12px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
       margin-bottom: 20px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
     }
 
     .search-modal .results {
@@ -141,9 +275,10 @@
     }
 
     .search-modal img {
-      width: 120px;
-      border-radius: 5px;
+      width: 140px;
+      border-radius: 12px;
       cursor: pointer;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
     }
 
     .search-modal .close {
@@ -156,28 +291,32 @@
 /* MOBILE DISPLAY START */
 @media (max-width: 768px) {
   .navbar {
-    flex-direction: row;
+    flex-direction: column;
     align-items: flex-start;
+    padding: 16px 20px;
   }
 
   .nav-links {
-    flex-direction: row;
+    flex-direction: column;
     width: 100%;
-    gap: 10px;
-    margin-top: 10px;
+    gap: 12px;
+    margin-top: 14px;
+    align-items: flex-start;
   }
 
-  .nav-links a, .search-bar {
+  .search-field {
     width: 100%;
   }
 
-  .search-bar {
-    margin-top: 10px;
-  }
+  .search-bar { width: 100%; }
 
   .banner {
-      height: 30vh;
+      height: auto;
+      min-height: 50vh;
+      padding: 32px 20px;
   }
+
+  .row { margin: 24px 20px; }
     
   .modal-body {
     align-items: center;
@@ -197,14 +336,9 @@
     -webkit-overflow-scrolling: touch;
   }
 
-  .list img {
-    width: 120px;
-  }
+  .list img { width: 140px; }
 
-  .search-modal input {
-    margin-top: 50px;
-    width: 90%;
-  }
+  .search-modal input { margin-top: 50px; }
 
   .search-modal .results {
     justify-content: center;
@@ -216,10 +350,7 @@
 }
 
 @media (max-width: 480px) {
-  .banner h1 {
-    font-size: 20px;
-    padding: 5px;
-  }
+  .banner-content h1 { font-size: 28px; }
 
   .row h2 {
     font-size: 18px;
@@ -243,11 +374,12 @@
 /* MOBILE DISPLAY END */
 
 .footer {
-  background: #222;
-  color: #ccc;
+  background: rgba(8, 16, 36, 0.95);
+  color: #9aa6c3;
   padding: 20px;
   text-align: center;
   margin-top: 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .footer-content {
@@ -264,7 +396,7 @@
 }
 
 .footer-links a {
-  color: red;
+  color: #7be7ff;
   text-decoration: none;
   transition: color 0.3s;
 }

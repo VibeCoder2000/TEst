@@ -27,8 +27,13 @@ const API_KEY = 'a1e72fd93ed59f56e6332813b9f8dcae';
 
 
     function displayBanner(item) {
+      const title = item.title || item.name;
+      const year = (item.release_date || item.first_air_date || '').slice(0, 4);
+      const rating = item.vote_average ? `${item.vote_average.toFixed(1)} ★` : 'Fresh Picks';
       document.getElementById('banner').style.backgroundImage = `url(${IMG_URL}${item.backdrop_path})`;
-      document.getElementById('banner-title').textContent = item.title || item.name;
+      document.getElementById('banner-title').textContent = title;
+      document.getElementById('banner-meta').textContent = `${rating} • ${year || 'Now Streaming'}`;
+      document.getElementById('banner-description').textContent = item.overview || 'Discover new originals, binge-worthy series, and blockbusters handpicked for you.';
     }
 
     function displayList(items, containerId) {
