@@ -1,106 +1,106 @@
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>My Website</title>
-  <link rel="stylesheet" href="css/home.css">
-  <link rel="preload" href="css/home.css" as="style">
-  <link rel="preload" href="js/home.js" as="script">
-  <link rel="manifest" href="manifest.json">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <script defer src="js/home.js"></script>
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Website</title>
+    <link rel="stylesheet" href="css/home.css" />
+    <link rel="preload" href="css/home.css" as="style" />
+    <link rel="preload" href="js/home.js" as="script" />
+    <link rel="manifest" href="manifest.json" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <script defer src="js/home.js"></script>
+  </head>
 
-<body>
-  <div class="navbar">
-    <div class="brand">
-      <img src="logo.png" alt="Stream+ Logo" />
-      <span>Stream+</span>
-    </div>
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="#series">Series</a>
-      <a href="#movies">Movies</a>
-      <a href="#originals">Originals</a>
-      <a href="#kids">Kids</a>
-      <div class="search-field">
-        <i class="fa-solid fa-magnifying-glass"></i>
-        <input type="text" class="search-bar" placeholder="Search titles, genres..." onfocus="openSearchModal()" />
+  <body>
+    <div class="navbar">
+      <img src="logo.png" alt="LOGO HERE" />
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <input
+          type="text"
+          class="search-bar"
+          placeholder="Search..."
+          onfocus="openSearchModal()"
+        />
       </div>
     </div>
-  </div>
 
-  <div class="banner" id="banner">
-    <div class="banner-content">
-      <span class="banner-pill">New & Trending</span>
+    <div class="banner" id="banner">
       <h1 id="banner-title"></h1>
-      <p class="banner-meta" id="banner-meta"></p>
-      <p class="banner-description" id="banner-description"></p>
-      <div class="banner-actions">
-        <button class="btn primary">Watch Now</button>
-        <button class="btn ghost"><i class="fa-solid fa-plus"></i> My List</button>
+    </div>
+
+    <div class="row">
+      <h2>Trending Movies</h2>
+      <div class="list" id="movies-list"></div>
+    </div>
+
+    <div class="row">
+      <h2>Trending TV Shows</h2>
+      <div class="list" id="tvshows-list"></div>
+    </div>
+
+    <div class="row">
+      <h2>Trending Anime</h2>
+      <div class="list" id="anime-list"></div>
+    </div>
+
+    <div class="modal" id="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()" style="color: red"
+          >&times;</span
+        >
+        <div class="modal-body">
+          <img id="modal-image" src="" alt="" />
+          <div class="modal-text">
+            <h2 id="modal-title"></h2>
+            <div class="stars" id="modal-rating"></div>
+            <p id="modal-description"></p>
+          </div>
+        </div>
+
+        <div class="server-selector">
+          <label for="server">Change Server:</label>
+          <select id="server" onchange="changeServer()">
+            <option value="vidsrc.cc">Vidsrc.cc</option>
+            <option value="vidsrc.me">Vidsrc.me</option>
+            <option value="player.videasy.net">Player.Videasy.net</option>
+          </select>
+        </div>
+        <iframe
+          id="modal-video"
+          width="100%"
+          height="315"
+          frameborder="0"
+          allowfullscreen
+        ></iframe>
       </div>
     </div>
-  </div>
 
-  <div class="row" id="movies">
-    <h2>Trending Movies</h2>
-    <div class="list" id="movies-list"></div>
-  </div>
+    <div class="search-modal" id="search-modal">
+      <span class="close" onclick="closeSearchModal()" style="color: red"
+        >&times;</span
+      >
+      <input
+        type="text"
+        id="search-input"
+        placeholder="Search for a movie or show..."
+        oninput="searchTMDB()"
+      />
+      <div class="results" id="search-results"></div>
+    </div>
 
-  <div class="row" id="series">
-    <h2>Trending TV Shows</h2>
-    <div class="list" id="tvshows-list"></div>
-  </div>
-
-  <div class="row" id="originals">
-    <h2>Trending Anime & Family</h2>
-    <div class="list" id="anime-list"></div>
-  </div>
-
-  <div class="modal" id="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal()" style="color: red;">&times;</span>
-      <div class="modal-body">
-  <img id="modal-image" src="" alt="" />
-  <div class="modal-text">
-    <h2 id="modal-title"></h2>
-    <div class="stars" id="modal-rating"></div>
-    <p id="modal-description"></p>
-  </div>
-</div>
-      
-      <div class="server-selector">
-        <label for="server">Change Server:</label>
-        <select id="server" onchange="changeServer()">
-          <option value="vidsrc.cc">Vidsrc.cc</option>
-          <option value="vidsrc.me">Vidsrc.me</option>
-          <option value="player.videasy.net">Player.Videasy.net</option>
-        </select>
+    <footer class="footer">
+      <div class="footer-content">
+        <p>&copy; 2025 My Website. All rights reserved.</p>
+        <div class="footer-links">
+          <a href="#">Disclaimer</a>
+          <a href="#">About Us</a>
+          <a href="#">Contact Us</a>
+        </div>
       </div>
-      <iframe id="modal-video" width="100%" height="315" frameborder="0" allowfullscreen></iframe>
-    </div>
-  </div>
-
-  <div class="search-modal" id="search-modal">
-    <span class="close" onclick="closeSearchModal()" style="color: red;">&times;</span>
-    <input type="text" id="search-input" placeholder="Search for a movie or show..." oninput="searchTMDB()" />
-    <div class="results" id="search-results"></div>
-  </div>
-
-<footer class="footer" id="kids">
-  <div class="footer-content">
-    <p>&copy; 2025 Stream+. A magical universe of stories.</p>
-    <div class="footer-links">
-      <a href="#">Disclaimer</a>
-      <a href="#">About Us</a>
-      <a href="#">Contact Us</a>
-    </div>
-  </div>
-</footer>
-
-  
-</body>
+    </footer>
+  </body>
+</html>
